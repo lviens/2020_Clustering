@@ -1,2 +1,3 @@
-# 2019_Clustering
-Improving the retrieval of offshore-onshore correlation functions with machine learning
+# Two-step clustering to improve offshore-onshore deconvolution functions from ambient seismic field.
+
+* This repository contains the codes for ... 
