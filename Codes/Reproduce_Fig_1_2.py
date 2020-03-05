@@ -14,7 +14,7 @@ from scipy import signal
 from scipy.signal import chirp
 from sklearn.utils import shuffle
 from sklearn.metrics import accuracy_score
-from functions_clustering_DFs import Clustering_PCA_GMM
+from Function_clustering_DFs import Clustering_PCA_GMM
 
 #%%
 np.random.seed(1)
