@@ -32,7 +32,7 @@ def butter_bandpass_filter(data, lowcut, highcut, fs, order=4):
 
 init_fold ='./' 
 sys.path.append(init_fold)
-from Functions_clustering_DFs import Clustering_PCA_GMM
+from Function_clustering_DFs import Clustering_PCA_GMM
 #%% Initial variables
 
 np.random.seed(1) # To ensure data reproducibility
