@@ -199,7 +199,7 @@ ax2.set_yticks(np.arange(-1,1.5, .5 ), minor = True)
 ax2.tick_params(bottom=True, top=True, left=True, right=True, which = 'minor')
 
 plt.show() 
-fig.savefig(dir_out+ '/Fig_4.pdf', dpi=200)
+fig.savefig(dir_out+ '/Fig_4.png', dpi=100)
 
 
 #%% Standardize the data (scale function from sklearn)
@@ -307,4 +307,4 @@ elif n_clusters == 5:
     axs[2,0].axis('off')
     axs[3,0].axis('off')
     axs[4,0].axis('off')
-figa.savefig(dir_out + '/Fig_5.pdf', dpi=300)
+figa.savefig(dir_out + '/Fig_5.png', dpi=300)
