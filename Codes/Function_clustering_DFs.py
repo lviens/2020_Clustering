@@ -35,7 +35,7 @@ def Clustering_PCA_GMM(mat, PC_nb, range_GMM):
     print('The first ' + str(PC_nb) + ' PCs explain ' + str(var[-1]) + ' % of the cumulative variance')
     
     # Compute the GMM for different number of clusters set by "range_GMM"
-    models = [GaussianMixture(n, covariance_type='full', random_state=0,max_iter=500).fit(pca_output) for n in range_GMM]
+    models = [GaussianMixture(n, covariance_type='full', random_state=0,max_iter=5000).fit(pca_output) for n in range_GMM]
     # Compute the Bayesian information criterion (BIC) for each model
     BICF =[m.bic(pca_output)/1000 for m in models]
      # Determine the best number of clusters using the knee (or elbow) method from the BIC scores
@@ -43,7 +43,7 @@ def Clustering_PCA_GMM(mat, PC_nb, range_GMM):
     n_clusters = kn.knee
     
     # Perform clustering for the best number of clusters
-    gmix = GaussianMixture(n_components=n_clusters, covariance_type='full',max_iter=500)
+    gmix = GaussianMixture(n_components=n_clusters, covariance_type='full',max_iter=5000)
     gmix.fit(pca_output)
     gmixfinPCA = gmix.predict(pca_output)
     probs = gmix.predict_proba(pca_output)
