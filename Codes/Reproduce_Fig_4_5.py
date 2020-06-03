@@ -1,36 +1,27 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-Created on Sat Feb 29 15:40:23 2020
+Created on Tue June 2 15:40:23 2020
 
 @author: Loic
+Code to reproduce Figures 4 and 5 of the paper.
+The data need to be downloaded and placed in the "Data Folder".
 """
 
 import  sys
 import numpy as np
 from matplotlib import gridspec
 import scipy.io as sio
-from scipy.signal import butter, filtfilt
 import matplotlib.pyplot as plt
 import geopy.distance
 from mpl_toolkits.axes_grid1.inset_locator import inset_axes
 from sklearn.preprocessing import scale
 
 
-#%% Load functions
-# Function to band-pass filter the waveforms with a Butterworth filter
-def butter_bandpass_filter(data, lowcut, highcut, fs, order=4):
-    nyq = 0.5 * fs
-    low = lowcut / nyq
-    high = highcut / nyq
-    b, a = butter(order, [low, high], btype='band')
-    y = filtfilt(b, a, data)
-    return y
-
-
+#%% Load functions to band-pass filter the waveforms with a Butterworth filter and perform the clustering
 init_fold = './' 
 sys.path.append(init_fold)
-from Function_clustering_DFs import Clustering_PCA_GMM
+from Function_clustering_DFs import Clustering_PCA_GMM, butter_bandpass_filter
 #%% Initial variables
 
 np.random.seed(1) # To ensure data reproducibility
@@ -40,7 +31,7 @@ dir_out = '../Figures' # Output directory for Figures
 data_folder = '../Data' # Input data directory
 
 # Number of PCs
-n_components_PCA = 20 # Number of PCs to be kept
+n_components_PCA = 20 # Number of PCs to keep
 
 # Virtual source and receiver names and components
 virt = 'M.KME18'
@@ -60,48 +51,46 @@ coords_2 = (34.6912, 137.5604 ) # Coordinates of the receiver
 dist = (geopy.distance.distance(coords_1, coords_2).km) # Compute distance between the two stations
 
 
-#%%
-# Read and load data
+#%% Read and load data
 name_virtZ =  data_folder + '/' + virt + '_' + rec + '_All_2016_Z_Z_365_0.5hr.mat' 
-print(name_virtZ)
 data_mat = sio.loadmat(name_virtZ) 
 ZZfin2 = data_mat['ZZf'] # get DFs data
-ZZmt=np.squeeze(data_mat['ZZmt'])
-ZZdy=np.squeeze(data_mat['ZZdy'])
-delta = 1/ data_mat['dt']
-ZZdatetot=(data_mat['ZZtot'])
-dt = data_mat['dt']
+ZZmt = np.squeeze(data_mat['ZZmt'])
+ZZdy = np.squeeze(data_mat['ZZdy'])
+dt = np.squeeze(data_mat['dt'])
+delta = 1/dt
+ZZdatetot = (data_mat['ZZtot'])
 
 # Filter the data
 ZZfin =[]
 for i in range(len(ZZfin2)): 
     filtdata = []
-    filtdata =  butter_bandpass_filter(ZZfin2[i], lowcut= filtlow, highcut = filthigh, fs = 1/dt, order=4) 
+    filtdata =  butter_bandpass_filter(ZZfin2[i], lowcut= filtlow, highcut = filthigh, fs = delta, order=4) 
     ZZfin.append(filtdata[int(len(filtdata)/2 -timesave*1/dt ): int( len(filtdata)/2+ timesave *1/dt+1  )])
 
 
 #%% Energy ratio stack method
+perc = 20 # To select 20% of the waveforms, this can be changed!
 
-tsign = int((dist/3.)*delta)
-E_SNR =[]
+t_s = int((dist/3.)*delta)
+R_E = []
                    
 scoreamptotef = []
 corrcoefinitot = []
 for io in np.arange(len(ZZfin)):
     avetotef =ZZfin[io]
-    E_spur = sum(avetotef[int(len(avetotef)/2)-tsign :int(len(avetotef)/2)+tsign ]**2)
-    E_sign = sum(avetotef[int(len(avetotef)/2)+tsign :int(len(avetotef)/2)+tsign*3 ]**2)
-    E_SNR.append(E_sign/E_spur)
+    E_noise = sum(avetotef[int(len(avetotef)/2)-t_s :int(len(avetotef)/2)+t_s ]**2)
+    E_signal = sum(avetotef[int(len(avetotef)/2)+t_s :int(len(avetotef)/2)+t_s*3 ]**2)
+    R_E.append(E_signal/E_noise)
 
-perc =20
 nb_stackso = int(perc*len(ZZfin)/100)
-sort = np.argsort(E_SNR)[::-1]
+sort = np.argsort(R_E)[::-1]
 ZZfinstc = []
 for i in np.arange(nb_stackso):
     ZZfinstc.append(ZZfin[sort[i]])
-finwavff20plt = np.mean(ZZfinstc,axis=0)
+Ener_stack_ratio = np.mean(ZZfinstc,axis=0)
 
-#%% Plot figure 4
+#%% Figure 4
 # Create right-hand side vertical axis
 dtmt=[]
 textval=[]
@@ -114,15 +103,16 @@ for ti in np.arange(1,4):
     textval.append('2016/' + str(int(ti)).zfill(2) )
     
 dtmt.append(len(ZZmt))
-textval.append('2016/04' )
+textval.append('2016/04')
 
-t = np.arange( -len(ZZfin[0])/2/delta , len(ZZfin[0])/2/delta, dt) # time vector
+t = np.arange(-len(ZZfin[0])/2/delta, len(ZZfin[0])/2/delta, dt) # time vector
 
-# Plot figure
+#%%
+# Plot Fig. 4.
 plt.rcParams.update({'font.size': 14})
 fig =plt.figure(figsize= (10,12))
 gs = gridspec.GridSpec(3,1, height_ratios=[  4, 1,1]) 
-
+# Plot Fig. 4a.
 ax0 = plt.subplot(gs[0])# Plot all the 30-min DFs
 im =plt.imshow( ZZfin/np.max(np.abs(ZZfin)), aspect = 'auto', clim= (-.015 , .015), extent=[t[0],timesave, len(ZZfin), 0 ] , cmap = 'coolwarm')
 plt.title( virt[2:] + '-' + rec[2:] + ' stations (' +cmp[0] +  '-' + cmp[1]  +  ' component, ' +str(len(ZZfin)) + ' DFs)\n Distance: ' + str(np.round(dist)) + ' km, BP filter: '+ str(period1) + '-' + str(period2) + ' s')
@@ -145,7 +135,8 @@ ax2.set_ylim(0 , len(ZZfin) )
 plt.yticks(dtmt, textval )
 ax2.invert_yaxis()
 
-# Plot stack over the year
+
+# Plot Fig. 4b: Raw Stack over the year
 ax1 = plt.subplot(gs[1])
 avetot = np.mean(ZZfin,axis = 0 )
 plt.plot(t, avetot/ np.max(np.abs(avetot)) , linewidth = 3,color ='k')
@@ -157,18 +148,18 @@ plt.title('Raw stack'   )
 plt.grid(linewidth =.3)
 plt.grid(linewidth =.1, which = 'minor')
 
-# Plot the Energy stack ratio DF
-ax2 = plt.subplot(gs[2])
 
-plt.plot(t, finwavff20plt/ np.max(np.abs(finwavff20plt)) , color = 'k', linewidth = 3)    
+# Plot Fig. 4c: Energy stack ratio DF
+ax2 = plt.subplot(gs[2])
+plt.plot(t, Ener_stack_ratio/ np.max(np.abs(Ener_stack_ratio)) , color = 'k', linewidth = 3)    
 plt.ylabel('Norm. amp.', fontweight = 'bold')
 plt.text(-375, 1.7, '(c)')
 plt.ylim(-1.4 , 1.4)
 plt.xlim(np.min(t), timesave)
 plt.title('Energy ratio stack (' + str(perc)+ '%)'  )
 plt.xlabel('Time (s)', fontweight = 'bold')
-plt.fill_between(np.arange(-tsign/delta, tsign/delta, 1) , -2 , 2, color='grey', alpha = .2)
-plt.fill_between(np.arange(tsign/delta, tsign/delta + tsign/delta*2, 1) , -2 , 2, color='grey', alpha = .4)
+plt.fill_between(np.arange(-t_s/delta, t_s/delta, 1) , -2 , 2, color='grey', alpha = .2)
+plt.fill_between(np.arange(t_s/delta, t_s/delta + t_s/delta*2, 1) , -2 , 2, color='grey', alpha = .4)
 plt.text(-20, 1, 'Noise')
 plt.text(101, 1, 'Signal')
 plt.grid(linewidth =.3)
@@ -212,7 +203,7 @@ range_GMM = np.arange(initval, 16) # To check the best number of cluster. The co
 pca_output, var, models, n_clusters, gmixfinPCA, probs, BICF = Clustering_PCA_GMM(X_train_minmax, n_components_PCA,range_GMM)
 
 #%% Assign colors to each cluster
-c_dict =  {0:'r',1:'b',2:'g',3:'orange',4:'m',5:'r',6:'b',7:'g',8:'y',9:'k',10:'r',11:'b',12:'g',13:'y',14:'k'}
+c_dict =  {0:'r',1:'b',2:'g',3:'orange',4:'m',5:'k',6:'doggerblue',7:'coral',8:'olive',9:'tan',10:'turquoise'}
 colors = np.array([c_dict[i] for i in gmixfinPCA])
 
 #%% Compute the variance of the data on the first 2 PCs and select the cluster with the lowest variance
@@ -222,7 +213,7 @@ for i in np.arange(n_clusters):
     stdpca = []
     a0test = [j for j, e in enumerate(gmixfinPCA) if e == i]
     stdpca = np.var(pca_output[a0test,0:2])
-    if stdpca < savestdpca and len(pca_output[a0test,0])>100:
+    if stdpca < savestdpca and len(pca_output[a0test,0])>100: # To ensure that the cluster  with the lowest variance ahs at least 100 waveforms
         savescoreind = i
         savestdpca = stdpca
 
@@ -238,7 +229,7 @@ axs[0,0].set_aspect('equal')
 axs[0,0].set_rasterized(True)
 axs[0,0].scatter(pca_output[:,0], pca_output[:, 1], c=colors, alpha=0.25, s = 10 ) #
 a0test = [j for j, e in enumerate(gmixfinPCA) if e == savescoreind]
-axs[0,0].scatter(pca_output[a0test,0], pca_output[a0test, 1], c=colors[a0test], alpha=0.25, s = 10 ) #
+axs[0,0].scatter(pca_output[a0test,0], pca_output[a0test, 1], c=colors[a0test], alpha=0.25, s = 10 ) # Plot again the selected cluster on top for visibility
 axs[0,0].set_xlabel('Principal component 1', fontsize=fnt)
 axs[0,0].set_ylabel('Principal component 2', fontsize=fnt)
 axs[0,0].set_title(virt[2:] +' - '+ rec[2:] + ' stations \n' + cmp[0] +  '-' + cmp[1]  + ' component \n PCA + GMM clustering', fontsize=fnt)
@@ -286,7 +277,7 @@ axs[i,1].set_xlabel('Time (s)', fontsize=fnt)
 axs[0,1].text(-450, saveamp0 + .125*saveamp0, '(c)', fontsize=fnt+2)
 axs[i,1].grid(linewidth = .3)
    
-# Set the position of each subplot
+# Set the position of each subplot for visibility
 axs[0,0].set_position([0.085, .55, .35, .35])
 axs[1,0].set_position([0.115, .12, .3, .3])
 if n_clusters == 4:
@@ -307,4 +298,6 @@ elif n_clusters == 5:
     axs[2,0].axis('off')
     axs[3,0].axis('off')
     axs[4,0].axis('off')
+    
+plt.show()
 figa.savefig(dir_out + '/Fig_5.png', dpi=300)
