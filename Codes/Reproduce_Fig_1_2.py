@@ -183,7 +183,7 @@ ax.set_position([0.55, .075, .39, .83])
 ax1.set_position([0.07, .075, .39, .83])
 
 plt.show()
-fig1.savefig(dir_out + '/Fig_1.pdf', dpi=300)
+fig1.savefig(dir_out + '/Fig_1.pdf', dpi=100)
 
 
 #%% Do the clustering
@@ -280,5 +280,5 @@ if n_clusters == 4: # Make the plot cleaner
     axs[3,0].axis('off')
     
 plt.show() 
-figa.savefig(dir_out + '/Fig_2.pdf', dpi=300)
+figa.savefig(dir_out + '/Fig_2.pdf', dpi=100)
 
