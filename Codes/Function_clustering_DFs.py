@@ -10,6 +10,37 @@ import numpy as np
 from sklearn.decomposition import PCA 
 from sklearn.mixture import GaussianMixture
 from kneed import KneeLocator
+from scipy.signal import butter, filtfilt
+
+
+def butter_bandpass_filter(data, lowcut, highcut, fs, order=4):
+    """
+    2-pass (zero-phase) Butterworth filter
+    Parameters
+    ----------
+    data : 1D Numpy array
+        Data to filter.
+    lowcut : float
+        Low cutoff frequency (in Hz).
+    highcut : TYPE
+        High cutoff frequency (in Hz).
+    fs : float
+        Sampling rate (in Hz).
+    order : INTEGER, optional
+        Order of the Filter. The default is 4.
+
+    Returns
+    -------
+    y :  1D Numpy array
+        Filtered signal.
+    """
+    nyq = 0.5 * fs
+    low = lowcut / nyq
+    high = highcut / nyq
+    b, a = butter(order, [low, high], btype='band')
+    y = filtfilt(b, a, data)
+    return y
+
 
 def Clustering_PCA_GMM(mat, PC_nb, range_GMM):
     """
