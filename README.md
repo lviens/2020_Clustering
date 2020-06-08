@@ -1,6 +1,6 @@
 # Two-step clustering method to improve offshore-onshore deconvolution functions from the ambient seismic field
 
-* We developped a method to improve the retrieval of clear deconvolution functions calculated from the ambient seismic field using unsupervised learning. Details about the method can be found in Viens and Iwata (Submitted to JGR). EarthArXiv pre-print available [here](https://eartharxiv.org/8ba5p/).
+* We developped a method to improve the retrieval of clear deconvolution functions calculated from the ambient seismic field using unsupervised learning. Details about the method can be found in Viens and Iwata (Submitted to JGR). EarthArXiv pre-print available [here](https://eartharxiv.org/8ba5p/) (!!!!! The new version of the code is sligthly different from that from the current EarthArXiv pre-print. The EarthArXiv pre-print will be updated soon !!!!).
 
 * The deconvolution functions in the paper were computed using the deconvolution_stab function available [here](https://github.com/lviens/2017_GJI/blob/master/Codes/Functions_GJI_2017.py).
 
