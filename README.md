@@ -9,7 +9,7 @@
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 ## Description:
-We developped a method based on unsupervised learning to improve the retrieval of deconvolution functions between offshore and onshore stations. We applied our method to retrieve deconvolution functions between offshore seismic stations deployed on top of the Nankai, Japan, and surrounding onshore stations. 
+We developed a method based on unsupervised learning to improve the retrieval of deconvolution functions between offshore and onshore stations. We applied our method to retrieve deconvolution functions between offshore seismic stations deployed on top of the Nankai, Japan, and surrounding onshore stations. 
 
 * This repo contains three folders:
   * **Codes** folder:
