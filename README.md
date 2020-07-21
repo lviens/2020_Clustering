@@ -26,4 +26,4 @@ We developped a method based on unsupervised learning to improve the retrieval o
 ## **Additional info**:
   * The deconvolution functions in the paper are computed using the deconvolution_stab function available [here](https://github.com/lviens/2017_GJI/blob/master/Codes/Functions_GJI_2017.py).
 
-  * The raw Hi-net and DONET 1 data can be downloaded [here](http://www.hinet.bosai.go.jp).
+  * The raw Hi-net and DONET 1 data can be downloaded from the [Hi-net website](http://www.hinet.bosai.go.jp).
