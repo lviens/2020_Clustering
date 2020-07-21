@@ -11,7 +11,7 @@
 
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
-* This repository contains data and python codes to reproduce some of the Figures of Viens and Iwata (2020, Accepted in JGR):
+* This repository contains three folders:
   * The **Codes** folder contains:
     - **Reproduce_Fig_1_2.py** to reproduce Figures 1 and 2 of the paper
     - **Reproduce_Fig_4_5.py** to reproduce Figures 4 and 5 of the paper (data download required, see below)
