@@ -2,8 +2,8 @@
 
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
-- Update 21/07/2020: The paper has been accepted in JGR (available online soon).
-- Update 03/06/2020: 2nd release of the code (it is sligthly different from what is presented in the initial EarthArXiv pre-print. The EarthArXiv pre-print will be updated soon )
+- Update 21/07/2020: The paper has been accepted in JGR ([The accepted is available on EarthArXiv](https://eartharxiv.org/8ba5p/)).
+- Update 03/06/2020: 2nd release of the code.
 
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
