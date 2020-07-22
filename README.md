@@ -1,4 +1,4 @@
-# Viens L. and Iwata T. (2020), Improving the retrieval of offshore-onshore correlation functions with machine learning, Accepted in JGR - Solid Earth
+# Python codes to improve the retrieval of offshore-onshore correlation functions with machine learning ([Viens L. and Iwata T., 2020, JGR)])
 
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
