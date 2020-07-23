@@ -1,4 +1,4 @@
-# Python codes to improve the retrieval of offshore-onshore correlation functions with machine learning ([Viens L. and Iwata T., 2020, JGR](https://agupubs.onlinelibrary.wiley.com/doi/abs/10.1029/2020JB019730))
+# Python codes to improve the retrieval of offshore-onshore correlation functions with machine learning ([Viens and Iwata, 2020, JGR](https://agupubs.onlinelibrary.wiley.com/doi/abs/10.1029/2020JB019730))
 
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
