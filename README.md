@@ -1,8 +1,9 @@
-# Python codes to improve the retrieval of offshore-onshore correlation functions with machine learning ([Viens L. and Iwata T., 2020, JGR)])
+# Python codes to improve the retrieval of offshore-onshore correlation functions with machine learning ([Viens L. and Iwata T., 2020, JGR](https://agupubs.onlinelibrary.wiley.com/doi/abs/10.1029/2020JB019730))
 
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
-- Update - 21/07/2020: The paper has been accepted in JGR - Solid Earth ([The accepted paper is available on EarthArXiv](https://eartharxiv.org/8ba5p/)).
+- Update - 21/07/2020: The paper has been accepted in JGR - Solid Earth and is available [here](https://agupubs.onlinelibrary.wiley.com/doi/abs/10.1029/2020JB019730)
+(The accepted paper is also available on [EarthArXiv](https://eartharxiv.org/8ba5p/)).
 - Update - 03/06/2020: 2nd release of the code.
 - 06/03/2020: 1st release of the code
 
