@@ -32,8 +32,7 @@ We developed a method based on unsupervised learning to improve the retrieval of
 ## Example:
 The **Reproduce_Fig_4_5.py** code produces two figures. The first figure (Figure 4) is a plot of the 16653 30-min deconvolution function between the KME18 and ARIH stations for the Z-Z components. The waveforms from the raw stack over the year and the energy ratio stack are also shown. 
 
-<img src="https://github.com/lviens/2020_Clustering/blob/master/Figures/Fig_4.png" width=50%>
+<img src="https://github.com/lviens/2020_Clustering/blob/master/Figures/Fig_4.png" width=75%>
 
 The second figure (Figure 5) is the output of the clustering algorithm. The algorithm automatically selects the DF from cluster 1.
-![Fig5](https://github.com/lviens/2020_Clustering/blob/master/Figures/Fig_5.png)
-
+<img src="https://github.com/lviens/2020_Clustering/blob/master/Figures/Fig_5.png" width=75%>
