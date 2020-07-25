@@ -30,7 +30,7 @@ We developed a method based on unsupervised learning to improve the retrieval of
   * The raw Hi-net and DONET 1 data can be downloaded from the [Hi-net website](http://www.hinet.bosai.go.jp).
 
 ## Example:
-The **Reproduce_Fig_4_5.py** code produces two figures. The first figure (Figure 4) is a plot of the 16653 30-min deconvolution function between the KME18 and ARIH stations for the Z-Z components. The waveforms from the raw stack over the year and the energy ratio stack are also shown. 
+The **Reproduce_Fig_4_5.py** code produces two figures. The first figure (Figure 4) is a plot of the 16653 30-min deconvolution function between the KME18 and ARIH stations for the Z-Z component. The waveforms from the raw stack over the year (b) and the energy ratio stack (c) are also shown. 
 
 <img src="https://github.com/lviens/2020_Clustering/blob/master/Figures/Fig_4.png" width=75%>
 
