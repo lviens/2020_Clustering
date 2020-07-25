@@ -34,5 +34,5 @@ The **Reproduce_Fig_4_5.py** code produces two figures. The first figure (Figure
 
 <img src="https://github.com/lviens/2020_Clustering/blob/master/Figures/Fig_4.png" width=75%>
 
-The second figure (Figure 5) is the output of the clustering algorithm. The algorithm automatically selects the DF from cluster 1.
+The second figure (Figure 5) is the output of the clustering algorithm. For this station pair, the knee method on the BIC score (Figure (b)) determines that the optimal number of clusters is five. The projection of the data on the first two PCs is shown in Figure (a) together with the clustering results. In Figure (c), we show the stacked DFs from the five clusters. The algorithm automatically selects the DF from cluster 1, which has clear anti-causal and causal Rayleigh wave arrivals and almost no spurious arrivals.
 <img src="https://github.com/lviens/2020_Clustering/blob/master/Figures/Fig_5.png" width=75%>
